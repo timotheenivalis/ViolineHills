@@ -14,8 +14,12 @@ roxygenise("ViolineHills/", clean = TRUE)
 
 # Then RUN
 # R CMD build ViolineHills 
+system(command = "R CMD build ViolineHills")
 # And maybe
-#  R CMD check ViolineHills 
+system(command = "R CMD check ViolineHills")
 
 # Then install
-install.packages("ViolineHills_1.0.tar.gz")
+install(pkg = "ViolineHills")
+library(ViolineHills)
+
+#install.packages("~/Documents/GitHub/MyPackages/ViolineHills/ViolineHills_1.0.tar.gz")
