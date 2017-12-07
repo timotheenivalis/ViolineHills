@@ -2,24 +2,31 @@
 % Please edit documentation in R/GraphicFunctions.R
 \name{distripolygonHill}
 \alias{distripolygonHill}
-\title{Illustration of crayon colors 2}
+\title{One-side polygon from a distribution}
 \usage{
-distripolygonHill(distri, color)
+distripolygonHill(distri, color, ysh = 0, maxdensity = NULL,
+  transform = identity, adjust = 1)
 }
 \arguments{
-\item{method2order}{method to order colors (\code{"hsv"} or \code{"cluster"})}
+\item{distri}{A vector containing the distribution to plot}
 
-\item{cex}{character expansion for the text}
+\item{color}{Color to fill the shape}
 
-\item{mar}{margin paramaters; vector of length 4 (see \code{\link[graphics]{par}})}
+\item{ysh}{Shift on the y-axis}
+
+\item{maxdensity}{NULL}
+
+\item{logy}{Boolean}
 }
 \value{
 None
 }
 \description{
-Creates a plot of the crayon colors in \code{\link{brocolors}}
+Creates a polygon from a distribution
 }
 \examples{
-plot_crayons()
+distri <- rnorm(2000, 0,1)
+plot(1, xlim=c(-3,3), type='n', ylim=c(-1,1))
+distripolygonHill(distri=distri, color="red")
 
 }

@@ -3,7 +3,7 @@ setwd(dir = "~/Documents/GitHub/MyPackages/ViolineHills/")
 library(devtools)
 library(roxygen2)
 # initial package creation
-package.skeleton(name="ViolineHills", code_files="GraphicFunctions.R")
+#package.skeleton(name="ViolineHills", code_files="GraphicFunctions.R")
 
 # to up-date
 load_all("ViolineHills/")

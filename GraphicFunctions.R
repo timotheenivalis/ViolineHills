@@ -4,7 +4,10 @@
 #'
 #' @param distri A vector containing the distribution to plot
 #' @param color Color to fill the shape
-#'
+#' @param ysh Shift on the y-axis
+#' @param maxdensity NULL
+#' @param logy Boolean
+#' 
 #' @return None
 #'
 #' @examples
@@ -42,6 +45,9 @@ distripolygonVioline <- function(distri, color, ysh=0, maxdensity=NULL, logy=FAL
 #'
 #' @param distri A vector containing the distribution to plot
 #' @param color Color to fill the shape
+#' @param ysh Shift on the y-axis
+#' @param maxdensity NULL
+#' @param logy Boolean
 #'
 #' @return None
 #'
@@ -97,12 +103,14 @@ PolyViolineSwitch <- function(violine=TRUE)
 
 #' Plots multiple density distributions
 #'
-#' Plots multiple density distributions
+#' To plot multiple density distributions
 #'
 #' @param distributions A vector containing the distribution to plot
 #' @param distrilayout Color to fill the shape
-#' @param xdis
-#' @param violine
+#' @param xdis X-label 
+#' @param violine Boolean. If TRUE draws a violine plot, otherwise, draws a one-sided distribution
+#' @param logy Boolean
+#' @param dlegend Null or legend caption
 #'
 #' @return None
 #'
