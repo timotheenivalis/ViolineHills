@@ -149,7 +149,7 @@ plotdensities <- function(distributions, distrilayout=NULL, xdis="Value", violin
   
   legendspace <- length(dlegend)/legendncol - max(0.5,violine)
   plot(0, xlim=c(Xglobalmin,Xglobalmax), type='n',
-       ylim=c(min(ran)-0.75/(2-violine),max(ran)+1/(2-violine)+legendspace),
+       ylim=c(min(ran)-0.75*violine,max(ran)+1/(2-violine)+legendspace),
        xlab = xdis, ylab="", yaxt="n")
   #abline(v=0,)
   lines(x = c(0,0), y=c(-nbdistr, nbdistr+0.1))

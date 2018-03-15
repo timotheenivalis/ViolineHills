@@ -12,11 +12,14 @@ load_all("ViolineHills/")
 document(pkg = "ViolineHills/")
 roxygenise("ViolineHills/", clean = TRUE)
 
+build(pkg = "ViolineHills", manual = TRUE)
+check("ViolineHills", manual = TRUE )
+
 # Then RUN
 # R CMD build ViolineHills 
-system(command = "R CMD build ViolineHills")
+#system(command = "R CMD build ViolineHills")
 # And maybe
-system(command = "R CMD check ViolineHills")
+#system(command = "R CMD check ViolineHills")
 
 # Then install
 install(pkg = "ViolineHills")
