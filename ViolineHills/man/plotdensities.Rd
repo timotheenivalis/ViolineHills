@@ -21,7 +21,7 @@ plotdensities(distributions, distrilayout = NULL, xdis = "Value",
 
 \item{globalmaxdensity}{Boolean}
 
-\item{logy}{Boolean}
+\item{transform}{Function}
 }
 \value{
 None

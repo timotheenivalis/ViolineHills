@@ -16,7 +16,7 @@ distripolygonVioline(distri, color, ysh = 0, maxdensity = NULL,
 
 \item{maxdensity}{NULL}
 
-\item{logy}{Boolean}
+\item{transform}{Function}
 }
 \value{
 None

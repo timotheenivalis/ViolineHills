@@ -6,7 +6,7 @@
 #' @param color Color to fill the shape
 #' @param ysh Shift on the y-axis
 #' @param maxdensity NULL
-#' @param logy Boolean
+#' @param transform Function
 #' 
 #' @return None
 #'
@@ -45,7 +45,7 @@ distripolygonVioline <- function(distri, color, ysh=0, maxdensity=NULL, transfor
 #' @param color Color to fill the shape
 #' @param ysh Shift on the y-axis
 #' @param maxdensity NULL
-#' @param logy Boolean
+#' @param transform Function
 #'
 #' @return None
 #'
@@ -105,7 +105,7 @@ PolyViolineSwitch <- function(violine=TRUE)
 #' @param distrilayout Color to fill the shape
 #' @param xdis X-label 
 #' @param violine Boolean. If TRUE draws a violine plot, otherwise, draws a one-sided distribution
-#' @param logy Boolean
+#' @param transform Function
 #' @param dlegend Null or legend caption
 #' @param globalmaxdensity Boolean
 #'
@@ -147,8 +147,9 @@ plotdensities <- function(distributions, distrilayout=NULL, xdis="Value", violin
   #spreading the rows vertically
   ran <- seq(-(nrow(distrilayout)-1)/(2-violine), (nrow(distrilayout)-1)/(2-violine), length.out = nrow(distrilayout))
   
-  legendspace <- length(dlegend)/legendncol
-  plot(0, xlim=c(Xglobalmin,Xglobalmax), type='n', ylim=c(min(ran)-0.75/(2-violine),max(ran)+1/(2-violine)+legendspace/(2-violine)),
+  legendspace <- length(dlegend)/legendncol - max(0.5,violine)
+  plot(0, xlim=c(Xglobalmin,Xglobalmax), type='n',
+       ylim=c(min(ran)-0.75/(2-violine),max(ran)+1/(2-violine)+legendspace),
        xlab = xdis, ylab="", yaxt="n")
   #abline(v=0,)
   lines(x = c(0,0), y=c(-nbdistr, nbdistr+0.1))
