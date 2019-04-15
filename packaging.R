@@ -27,3 +27,5 @@ library(ViolineHills)
 
 #install.packages("~/Documents/GitHub/MyPackages/ViolineHills/ViolineHills_1.0.tar.gz")
 plotdensities
+
+install_github("timotheenivalis/ViolineHills/ViolineHills")
