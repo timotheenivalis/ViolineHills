@@ -161,7 +161,7 @@ plotdensities <- function(distributions, distrilayout=NULL, xdis="Value",
 
   if(is.null(colgroups))
     {
-    if(length(col)==1) if(col=="rainbow")
+    if(col=="rainbow")
       {
         transpColors <-  rainbow(ncol(distrilayout), alpha = 0.4)
     }else{
@@ -171,7 +171,7 @@ plotdensities <- function(distributions, distrilayout=NULL, xdis="Value",
                                     nrow(distrilayout)), 
                          ncol = ncol(distrilayout), byrow = TRUE)
   }else{
-    if(length(col)==1) if(col=="rainbow")
+    if(col=="rainbow")
     {
     transpColors <- rainbow(length(unique(as.vector(colgroups))), alpha = 0.4)
     }else{
