@@ -6,7 +6,8 @@
 \usage{
 plotdensities(distributions, distrilayout = NULL, xdis = "Value",
   violine = TRUE, dlegend = NULL, globalmaxdensity = TRUE,
-  colgroups = NULL, legendncol = 1, transform = identity, adjust = 1)
+  colgroups = NULL, legendncol = 1, transform = identity,
+  adjust = 1)
 }
 \arguments{
 \item{distributions}{A vector containing the distribution to plot}
@@ -32,7 +33,6 @@ To plot multiple density distributions
 \examples{
 distri1 <- rnorm(2000, 0,1)
 distri2 <- rnorm(2000, 1, 1)
-distributions
-plotdensities(distri=distri, color="red")
+plotdensities(distributions=list(distri1,distri2))
 
 }

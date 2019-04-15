@@ -114,11 +114,12 @@ PolyViolineSwitch <- function(violine=TRUE)
 #' @examples
 #' distri1 <- rnorm(2000, 0,1)
 #' distri2 <- rnorm(2000, 1, 1)
-#' distributions
-#' plotdensities(distri=distri, color="red")
+#' plotdensities(distributions=list(distri1,distri2))
 #'
 #' @export
-plotdensities <- function(distributions, distrilayout=NULL, xdis="Value", violine=TRUE, dlegend = NULL, globalmaxdensity=TRUE, colgroups=NULL, legendncol=1, transform=identity, adjust=1)
+plotdensities <- function(distributions, distrilayout=NULL, xdis="Value",
+                          violine=TRUE, dlegend = NULL, globalmaxdensity=TRUE,
+                          colgroups=NULL, legendncol=1, transform=identity, adjust=1)
 {
   nbdistr <- length(distributions)
   nonna <- which(unlist(lapply(distributions, function(x){!is.na(x[1])})))
