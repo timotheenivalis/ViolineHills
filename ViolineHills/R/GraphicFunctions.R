@@ -105,9 +105,10 @@ PolyViolineSwitch <- function(violine=TRUE)
 #' @param distrilayout Color to fill the shape
 #' @param xdis X-label 
 #' @param violine Boolean. If TRUE draws a violine plot, otherwise, draws a one-sided distribution
-#' @param transform Function
+#' @param transform Function. Transform on the y-axis (e.g. log).
 #' @param dlegend Null or legend caption
 #' @param globalmaxdensity Boolean
+#' @param col Colors if specified Default is "rainbow" and creates colors based on a transparent raibow palette.
 #'
 #' @return None
 #'
@@ -119,7 +120,8 @@ PolyViolineSwitch <- function(violine=TRUE)
 #' @export
 plotdensities <- function(distributions, distrilayout=NULL, xdis="Value",
                           violine=TRUE, dlegend = NULL, globalmaxdensity=TRUE,
-                          colgroups=NULL, legendncol=1, transform=identity, adjust=1)
+                          colgroups=NULL, legendncol=1, transform=identity, adjust=1,
+                          col="rainbow")
 {
   nbdistr <- length(distributions)
   nonna <- which(unlist(lapply(distributions, function(x){!is.na(x[1])})))
@@ -159,10 +161,22 @@ plotdensities <- function(distributions, distrilayout=NULL, xdis="Value",
 
   if(is.null(colgroups))
     {
-     transpColors <-  rainbow(ncol(distrilayout), alpha = 0.4)
-     colgroups <- matrix(data = rep(1:ncol(distrilayout), nrow(distrilayout)), ncol = ncol(distrilayout), byrow = TRUE)
+    if(col=="rainbow")
+      {
+        transpColors <-  rainbow(ncol(distrilayout), alpha = 0.4)
+    }else{
+      transpColors <-  col
+      }
+     colgroups <- matrix(data = rep(1:ncol(distrilayout), 
+                                    nrow(distrilayout)), 
+                         ncol = ncol(distrilayout), byrow = TRUE)
   }else{
+    if(col=="rainbow")
+    {
     transpColors <- rainbow(length(unique(as.vector(colgroups))), alpha = 0.4)
+    }else{
+      transpColors <-  col
+    }
   }
   
   for (i in 1:nbdistr)
@@ -177,7 +191,8 @@ plotdensities <- function(distributions, distrilayout=NULL, xdis="Value",
       #axis(side = 2, at = c(ran[coor[1]]-0.5,ran[coor[1]],ran[coor[1]]+0.5), labels = c(realscale,0,realscale), tick = TRUE)
       
     }
-    distrifunction(distri = distributions[[i]], color = transpColors[colgroups[coor]], ysh = ran[coor[1]],
+    distrifunction(distri = distributions[[i]], color = transpColors[colgroups[coor]], 
+                   ysh = ran[coor[1]],
                    maxdensity = Yglobalmax, transform=transform, adjust=adjust)
 
     }

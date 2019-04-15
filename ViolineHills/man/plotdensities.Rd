@@ -7,7 +7,7 @@
 plotdensities(distributions, distrilayout = NULL, xdis = "Value",
   violine = TRUE, dlegend = NULL, globalmaxdensity = TRUE,
   colgroups = NULL, legendncol = 1, transform = identity,
-  adjust = 1)
+  adjust = 1, col = "rainbow")
 }
 \arguments{
 \item{distributions}{A vector containing the distribution to plot}
@@ -22,7 +22,9 @@ plotdensities(distributions, distrilayout = NULL, xdis = "Value",
 
 \item{globalmaxdensity}{Boolean}
 
-\item{transform}{Function}
+\item{transform}{Function. Transform on the y-axis (e.g. log).}
+
+\item{col}{Colors if specified Default is "rainbow" and creates colors based on a transparent raibow palette.}
 }
 \value{
 None
