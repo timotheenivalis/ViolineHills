@@ -4,8 +4,9 @@
 \alias{distripolygonVioline}
 \title{Violine polygon from a distribution}
 \usage{
-distripolygonVioline(distri, color, ysh = 0, maxdensity = NULL,
-  transform = identity, adjust = 1)
+distripolygonVioline(distri, color, ysh = 0, yax = FALSE,
+  minden = 0.6, maxdensity = NULL, transform = identity,
+  adjust = 1)
 }
 \arguments{
 \item{distri}{A vector containing the distribution to plot}

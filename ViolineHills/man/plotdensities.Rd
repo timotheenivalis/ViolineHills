@@ -4,17 +4,15 @@
 \alias{plotdensities}
 \title{Plots multiple density distributions}
 \usage{
-plotdensities(distributions, distrilayout = NULL, xdis = "Value",
-  violine = TRUE, dlegend = NULL, globalmaxdensity = TRUE,
-  colgroups = NULL, legendncol = 1, transform = identity,
-  adjust = 1, col = "rainbow")
+plotdensities(distributions, violine = TRUE, rowleg = NULL,
+  dlegend = NULL, globalmaxdensity = TRUE, sublegend = NULL,
+  cexsubl = 1, sublegside = "left", btylegend = "o",
+  blikefill = FALSE, legendncol = 1, transform = identity,
+  adjust = 1, xshift = c(0, 0), yshift = c(0, 0), minden = 0.6,
+  col = "rainbow", rowtext = NULL, ...)
 }
 \arguments{
-\item{distributions}{A vector containing the distribution to plot}
-
-\item{distrilayout}{Color to fill the shape}
-
-\item{xdis}{X-label}
+\item{distributions}{A list, or list of lists containing the distributions to plot}
 
 \item{violine}{Boolean. If TRUE draws a violine plot, otherwise, draws a one-sided distribution}
 
@@ -25,6 +23,10 @@ plotdensities(distributions, distrilayout = NULL, xdis = "Value",
 \item{transform}{Function. Transform on the y-axis (e.g. log).}
 
 \item{col}{Colors if specified Default is "rainbow" and creates colors based on a transparent raibow palette.}
+
+\item{distrilayout}{Color to fill the shape}
+
+\item{xdis}{X-label}
 }
 \value{
 None

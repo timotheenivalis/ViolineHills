@@ -4,8 +4,9 @@
 \alias{distripolygonHill}
 \title{One-side polygon from a distribution}
 \usage{
-distripolygonHill(distri, color, ysh = 0, maxdensity = NULL,
-  transform = identity, adjust = 1)
+distripolygonHill(distri, color, ysh = 0, yax = FALSE,
+  maxdensity = NULL, transform = identity, minden = 0.6,
+  adjust = 1)
 }
 \arguments{
 \item{distri}{A vector containing the distribution to plot}
