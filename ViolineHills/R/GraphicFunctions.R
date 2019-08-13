@@ -148,7 +148,7 @@ plotdensities <- function(distributions,
                           sublegend = NULL, cexsubl=1, sublegside = "left", btylegend ="o", blikefill=FALSE,
                           legendncol=1, transform=identity, adjust=1,
                           xshift=c(0,0), yshift=c(0,0), minden=0.6,
-                          col="rainbow", rowtext=NULL, ...)
+                          col="rainbow", rowtext=NULL, xlim=NULL, rowtextshift=c(0,0), ...)
 {
   if(typeof(distributions)!="list")
   {
@@ -189,6 +189,10 @@ plotdensities <- function(distributions,
     Yglobalmax <- NULL
   }
   
+  if(is.null(xlim)){
+    xlim <- c(Xglobalmin,Xglobalmax)
+  }
+  
   #spreading the rows vertically
   nbrows <- length(distributions)#unique(distrilayout))
   ran <- seq((nbrows-1)/(2-violine), 
@@ -196,7 +200,7 @@ plotdensities <- function(distributions,
              length.out = nbrows)
   
   legendspace <- ifelse(is.null(dlegend), 0, length(dlegend))/legendncol #- 2*max(0.35,violine)
-  plot(0, xlim=c(Xglobalmin,Xglobalmax), type='n',
+  plot(0, xlim=xlim, type='n',
        ylim=c(min(ran)-0.75*violine + yshift[1], max(ran) + 0.9  + legendspace + yshift[2]),#+ 1/(2-violine)),
        yaxt="n",
        ...)
@@ -209,7 +213,7 @@ plotdensities <- function(distributions,
   if(col[1]=="rainbow")
   {
     ldl <- lapply(distributions, length)
-    allcol <-  rainbow(sum(unlist(ldl)), alpha = 0.4)
+    allcol <-  rainbow(max(unlist(ldl)), alpha = 0.4)
     transpColors <- list(length(ldl))
     poscol <- 1
     for (i in 1:length(ldl))
@@ -234,12 +238,12 @@ plotdensities <- function(distributions,
   
   if(!is.null(rowtext))
   {
-    text(y=ran+max(dmodes)/4, x=Xglobalmin+0.05*(Xglobalmax-Xglobalmin), labels = rowtext)
+    text(x=Xglobalmin+0.05*(Xglobalmax-Xglobalmin)+rowtextshift[1], y=ran+rowtextshift[2], labels = rowtext)
   }
   
   if(!is.null(dlegend))
   {
-    legend(x="topleft", legend = dlegend, fill = transpColors,
+    legend(x="topleft", legend = dlegend, fill = unique(unlist(transpColors)),
            ncol = legendncol, bg=rgb(1,1,1,1))
   }
   
