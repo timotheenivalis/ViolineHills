@@ -4,7 +4,7 @@
 \alias{plotdensities}
 \title{Plots multiple density distributions}
 \usage{
-plotdensities(distributions, violine = TRUE, rowleg = NULL,
+plotdensities(distributions, violine = FALSE, rowleg = NULL,
   dlegend = NULL, globalmaxdensity = TRUE, sublegend = NULL,
   cexsubl = 1, sublegside = "left", btylegend = "o",
   blikefill = FALSE, legendncol = 1, transform = identity,

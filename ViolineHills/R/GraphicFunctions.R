@@ -59,7 +59,7 @@ distripolygonVioline <- function(distri, color, ysh=0, yax=FALSE, minden=0.6,
 distripolygonHill <- function(distri, color, ysh=0, yax=FALSE, maxdensity=NULL, 
                               transform=identity, minden=0.6, adjust = 1)
 {
-  dd <- density(distri, cut=3, adjust = adjust)
+  dd <- density(distri, from=min(distri), to=max(distri), cut=3, adjust = adjust)
   dd$y <- transform(dd$y)
   ddval <- dd$y
   
@@ -144,7 +144,7 @@ PolyViolineSwitch <- function(violine=TRUE)
 #'
 #' @export
 plotdensities <- function(distributions, 
-                          violine=TRUE, rowleg = NULL, dlegend = NULL, globalmaxdensity=TRUE,
+                          violine=FALSE, rowleg = NULL, dlegend = NULL, globalmaxdensity=TRUE,
                           sublegend = NULL, cexsubl=1, sublegside = "left", btylegend ="o", blikefill=FALSE,
                           legendncol=1, transform=identity, adjust=1,
                           xshift=c(0,0), yshift=c(0,0), minden=0.6,

@@ -29,3 +29,5 @@ library(ViolineHills)
 plotdensities
 
 install_github("timotheenivalis/ViolineHills/ViolineHills")
+library(ViolineHills)
+
