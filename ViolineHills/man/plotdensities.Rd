@@ -17,17 +17,45 @@ plotdensities(distributions, violine = FALSE, rowleg = NULL,
 
 \item{violine}{Boolean. If TRUE draws a violine plot, otherwise, draws a one-sided distribution}
 
+\item{rowleg}{Legend to be applied in each row}
+
 \item{dlegend}{Null or legend caption}
 
 \item{globalmaxdensity}{Boolean}
 
+\item{sublegend}{sub-legend}
+
+\item{cexsubl}{Magnification factor for sublegends}
+
+\item{sublegside}{Side where to pring sublegend}
+
+\item{btylegend}{bty argument in the function legend()}
+
+\item{blikefill}{Boolean. Should the legend boxes be black (FALSE) or of the same color as the fill (TRUE)}
+
+\item{legendncol}{Number of columns in the legend}
+
 \item{transform}{Function. Transform on the y-axis (e.g. log).}
+
+\item{adjust}{Smothing factor in the function density()}
+
+\item{xshift}{Vector of size 2 giving the bottom and top shift to be applied to the ploting region}
+
+\item{yshift}{Vector of size 2 giving the left and right shift to be applied to the ploting region}
+
+\item{minden}{Minimum mode of a density relative to the maximal density of all distributions}
 
 \item{col}{Colors if specified Default is "rainbow" and creates colors based on a transparent raibow palette.}
 
-\item{distrilayout}{Color to fill the shape}
+\item{rowtext}{Character vector with text to be written in each row}
 
-\item{xdis}{X-label}
+\item{xlim}{Vector of size 2 giving the x-limits of the plot}
+
+\item{rowtextshift}{Vector of size 2 giving the x and y shift to be applied to the position of text in rows}
+
+\item{returnxpos}{Boolean. If TRUE the function returns the y-coordonates of each row for use in other graphic functions (such as mtext())}
+
+\item{...}{Other parameters to be passed to plot()}
 }
 \value{
 None

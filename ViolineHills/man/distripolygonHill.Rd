@@ -15,9 +15,15 @@ distripolygonHill(distri, color, ysh = 0, yax = FALSE,
 
 \item{ysh}{Shift on the y-axis}
 
+\item{yax}{Do we plot a y-axis?}
+
 \item{maxdensity}{NULL}
 
-\item{transform}{Function}
+\item{transform}{Function used to transform the density distribution (that is, the y-axis)}
+
+\item{minden}{Minimum mode of a density relative to the maximal density of all distributions}
+
+\item{adjust}{Smoothing factor in the function density()}
 }
 \value{
 None

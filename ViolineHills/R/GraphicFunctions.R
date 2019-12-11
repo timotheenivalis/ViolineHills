@@ -7,6 +7,9 @@
 #' @param ysh Shift on the y-axis
 #' @param maxdensity NULL
 #' @param transform Function
+#' @param yax Do we plot a y-axis?
+#' @param minden Minimum mode of a density relative to the maximal density of all distributions
+#' @param adjust Smoothing factor in the function density()
 #' 
 #' @return None
 #'
@@ -46,7 +49,10 @@ distripolygonVioline <- function(distri, color, ysh=0, yax=FALSE, minden=0.6,
 #' @param color Color to fill the shape
 #' @param ysh Shift on the y-axis
 #' @param maxdensity NULL
-#' @param transform Function
+#' @param transform Function used to transform the density distribution (that is, the y-axis)
+#' @param yax Do we plot a y-axis?
+#' @param minden Minimum mode of a density relative to the maximal density of all distributions
+#' @param adjust Smoothing factor in the function density()
 #'
 #' @return None
 #'
@@ -127,13 +133,27 @@ PolyViolineSwitch <- function(violine=TRUE)
 #' To plot multiple density distributions
 #'
 #' @param distributions A list, or list of lists containing the distributions to plot
-#' @param distrilayout Color to fill the shape
-#' @param xdis X-label 
 #' @param violine Boolean. If TRUE draws a violine plot, otherwise, draws a one-sided distribution
 #' @param transform Function. Transform on the y-axis (e.g. log).
 #' @param dlegend Null or legend caption
 #' @param globalmaxdensity Boolean
 #' @param col Colors if specified Default is "rainbow" and creates colors based on a transparent raibow palette.
+#' @param rowleg Legend to be applied in each row
+#' @param sublegend sub-legend
+#' @param cexsubl Magnification factor for sublegends
+#' @param sublegside Side where to pring sublegend
+#' @param btylegend bty argument in the function legend()
+#' @param blikefill Boolean. Should the legend boxes be black (FALSE) or of the same color as the fill (TRUE)
+#' @param legendncol Number of columns in the legend
+#' @param adjust Smothing factor in the function density()
+#' @param xshift Vector of size 2 giving the bottom and top shift to be applied to the ploting region
+#' @param yshift Vector of size 2 giving the left and right shift to be applied to the ploting region
+#' @param minden Minimum mode of a density relative to the maximal density of all distributions
+#' @param rowtext Character vector with text to be written in each row
+#' @param xlim Vector of size 2 giving the x-limits of the plot
+#' @param rowtextshift Vector of size 2 giving the x and y shift to be applied to the position of text in rows
+#' @param returnxpos Boolean. If TRUE the function returns the y-coordonates of each row for use in other graphic functions (such as mtext())
+#' @param ... Other parameters to be passed to plot()
 #'
 #' @return None
 #'
@@ -141,6 +161,10 @@ PolyViolineSwitch <- function(violine=TRUE)
 #' distri1 <- rnorm(2000, 0,1)
 #' distri2 <- rnorm(2000, 1, 1)
 #' plotdensities(distributions=list(distri1,distri2))
+#'
+#' @importFrom stats density
+#' @importFrom graphics abline axis legend lines plot polygon text
+#' @importFrom grDevices rainbow rgb
 #'
 #' @export
 plotdensities <- function(distributions, 
