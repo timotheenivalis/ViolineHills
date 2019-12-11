@@ -148,7 +148,8 @@ plotdensities <- function(distributions,
                           sublegend = NULL, cexsubl=1, sublegside = "left", btylegend ="o", blikefill=FALSE,
                           legendncol=1, transform=identity, adjust=1,
                           xshift=c(0,0), yshift=c(0,0), minden=0.6,
-                          col="rainbow", rowtext=NULL, xlim=NULL, rowtextshift=c(0,0), ...)
+                          col="rainbow", rowtext=NULL, xlim=NULL, rowtextshift=c(0,0),
+                          returnxpos = FALSE,...)
 {
   if(typeof(distributions)!="list")
   {
@@ -268,4 +269,5 @@ plotdensities <- function(distributions,
         }
     }
   }
+ if(returnxpos){return(ran+rowtextshift[2])}
 }#end function()

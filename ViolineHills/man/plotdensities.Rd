@@ -10,7 +10,7 @@ plotdensities(distributions, violine = FALSE, rowleg = NULL,
   blikefill = FALSE, legendncol = 1, transform = identity,
   adjust = 1, xshift = c(0, 0), yshift = c(0, 0), minden = 0.6,
   col = "rainbow", rowtext = NULL, xlim = NULL, rowtextshift = c(0,
-  0), ...)
+  0), returnxpos = FALSE, ...)
 }
 \arguments{
 \item{distributions}{A list, or list of lists containing the distributions to plot}
