@@ -1,10 +1,10 @@
 Package: ViolineHills
 Type: Package
 Title: What the package does (short line)
-Version: 1.0
-Date: 2017-11-29
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Version: 1.01
+Date: 2019-12-11
+Author: Timothée Bonnet
+Maintainer: <timotheebonnec@gmail.com>
+Description: Density and violine plots out of lists (and lists of lists).
+License: CC0
 RoxygenNote: 6.1.1
