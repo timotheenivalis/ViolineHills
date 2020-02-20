@@ -10,7 +10,7 @@ plotdensities(distributions, violine = FALSE, rowleg = NULL,
   blikefill = FALSE, legendncol = 1, transform = identity,
   adjust = 1, xshift = c(0, 0), yshift = c(0, 0), minden = 0.6,
   col = "rainbow", rowtext = NULL, xlim = NULL, rowtextshift = c(0,
-  0), returnxpos = FALSE, ...)
+  0), returnxpos = FALSE, yax = TRUE, ...)
 }
 \arguments{
 \item{distributions}{A list, or list of lists containing the distributions to plot}
@@ -54,6 +54,8 @@ plotdensities(distributions, violine = FALSE, rowleg = NULL,
 \item{rowtextshift}{Vector of size 2 giving the x and y shift to be applied to the position of text in rows}
 
 \item{returnxpos}{Boolean. If TRUE the function returns the y-coordonates of each row for use in other graphic functions (such as mtext())}
+
+\item{yax}{Boolean. If TRUE labels appear on the y-axis.}
 
 \item{...}{Other parameters to be passed to plot()}
 }

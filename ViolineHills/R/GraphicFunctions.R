@@ -153,6 +153,7 @@ PolyViolineSwitch <- function(violine=TRUE)
 #' @param xlim Vector of size 2 giving the x-limits of the plot
 #' @param rowtextshift Vector of size 2 giving the x and y shift to be applied to the position of text in rows
 #' @param returnxpos Boolean. If TRUE the function returns the y-coordonates of each row for use in other graphic functions (such as mtext())
+#' @param yax Boolean. If TRUE labels appear on the y-axis.
 #' @param ... Other parameters to be passed to plot()
 #'
 #' @return None
@@ -173,7 +174,7 @@ plotdensities <- function(distributions,
                           legendncol=1, transform=identity, adjust=1,
                           xshift=c(0,0), yshift=c(0,0), minden=0.6,
                           col="rainbow", rowtext=NULL, xlim=NULL, rowtextshift=c(0,0),
-                          returnxpos = FALSE,...)
+                          returnxpos = FALSE, yax=TRUE,...)
 {
   if(typeof(distributions)!="list")
   {
@@ -255,7 +256,7 @@ plotdensities <- function(distributions,
     for(j in 1:length(distributions[[i]]))
     {
       distrifunction(distri = distributions[[i]][[j]], color = transpColors[[i]][[j]], 
-                     ysh = ran[i], yax= (j==yaxd), minden=minden,
+                     ysh = ran[i], yax= yax & (j==yaxd), minden=minden,
                      maxdensity = Yglobalmax, transform=transform, adjust=adjust)
     }
     abline(h=ran[i], col="gray")
