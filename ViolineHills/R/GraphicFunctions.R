@@ -71,9 +71,9 @@ distripolygonHill <- function(distri, color, ysh=0, yax=FALSE, maxdensity=NULL,
   
   if(is.null(maxdensity))
   {
-    dd$y <- 0.9*dd$y/max(dd$y)
+    dd$y <-dd$y#/max(dd$y)
   }else{
-    dd$y <- 0.9*dd$y/ifelse( (max(dd$y)/maxdensity)<minden, maxdensity*minden, maxdensity)
+    dd$y <-dd$y/maxdensity#/ifelse( (max(dd$y)/maxdensity)<minden, maxdensity*minden, maxdensity)
   }
   
   polygon(x=c(min(distri),
@@ -88,20 +88,20 @@ distripolygonHill <- function(distri, color, ysh=0, yax=FALSE, maxdensity=NULL,
     rfac <- ceiling(-log(max(ddval), base=10))
     labaxis <- round(seq(from=0, to = 1.1*max(ddval), by = 10^(-rfac)), digits = rfac)
     if(length(labaxis)<3){labaxis <- round(seq(from=0, to = 1.1*max(ddval), by = 5*10^(-rfac-1)), digits = rfac+1)}
-    labaxis <- labaxis[ labaxis<=ifelse(is.null(maxdensity), 1.1*max(ddval),maxdensity)]
+    #labaxis <- labaxis[ labaxis<=ifelse(is.null(maxdensity), 1.1*max(ddval),maxdensity)]
     #if(length(labaxis)>6){labaxis <- labaxis[round(seq(from=1, to =length(labaxis), length.out = 6))]}
     
     labaxistrans <- labaxis
-    
-    if(is.null(maxdensity))
-    {
-      labaxistrans <- 0.9*labaxistrans/max(labaxistrans)
-    }else{
-      labaxistrans <- 0.9*labaxistrans/ifelse( (max(labaxistrans)/maxdensity)<minden, maxdensity*minden, maxdensity)
-    }
+    # 
+    # if(is.null(maxdensity))
+    # {
+    #   labaxistrans <- labaxistrans#/max(labaxistrans)
+    # }else{
+    #   labaxistrans <- labaxistrans/maxdensity#ifelse( (max(labaxistrans)/maxdensity)<minden, maxdensity*minden, maxdensity)
+    # }
     
     axis(side = 2, at = ysh + labaxistrans,line = 0,
-         labels = labaxis, cex.axis=0.7, tck=-0.02)
+         labels = labaxistrans, cex.axis=0.7, tck=-0.02)
   }
 }#end function()
 
@@ -202,15 +202,15 @@ plotdensities <- function(distributions,
   Xglobalmax <- xshift[2] + max(unlist(distributions), na.rm = TRUE) + 0.1*Xrange
   
   #take the global bounds on y-axis
-  dmodes <- unlist(lapply(distributions, FUN = function(y){
-    lapply(y,function(x){
+  Ymax <- lapply(distributions, FUN = function(y){
+    max(unlist(lapply(y,function(x){
       max(transform(density(x)$y), na.rm = TRUE)
-    })
-  }))
+    })))
+  })
   
   if(globalmaxdensity)
   {
-    Yglobalmax <- max(dmodes)
+    Yglobalmax <- max(unlist(Ymax))
   }else{
     Yglobalmax <- NULL
   }
@@ -252,7 +252,7 @@ plotdensities <- function(distributions,
   
   for (i in 1:length(distributions))
   {
-    yaxd <- which(unlist(lapply(distributions[[i]], max) )== max(unlist(lapply(distributions[[i]], max))))
+    yaxd <- which.max(unlist(lapply(distributions[[i]], function(x) max(density(x)$y))))
     for(j in 1:length(distributions[[i]]))
     {
       distrifunction(distri = distributions[[i]][[j]], color = transpColors[[i]][[j]], 

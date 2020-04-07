@@ -10,5 +10,5 @@ Authors@R: person("Timothée", "Bonnet", email = "timotheebonnec@gmail.com",
 Maintainer: <timotheebonnec@gmail.com>
 Description: Density and violine plots out of lists (and lists of lists).
 License: GPL-3
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 LazyData: true
