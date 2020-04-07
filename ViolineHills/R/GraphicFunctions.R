@@ -180,6 +180,9 @@ plotdensities <- function(distributions,
   {
     stop("distributions should be a list")
   }
+  
+  if(length(distributions)==1) {globalmaxdensity <- FALSE}
+  
   for (i in 1:length(distributions))
   {
     if(typeof(distributions[[i]]) != "list")
@@ -189,11 +192,7 @@ plotdensities <- function(distributions,
   }
   
   nbdistr <- length(distributions)
-  #nonna <- which(unlist(lapply(distributions, function(x){!is.na(x[1])})))
-  # if(is.null(distrilayout))
-  # {
-  #   distrilayout <- matrix(1:nbdistr,nrow =nbdistr, ncol = 1)
-  # }
+
   #take the global bounds on x-axis
   
   Xrange <- (xshift[2]+max(unlist(distributions), na.rm = TRUE)) - (xshift[1]+min(unlist(distributions), na.rm = TRUE))
