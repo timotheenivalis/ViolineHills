@@ -71,9 +71,9 @@ distripolygonHill <- function(distri, color, ysh=0, yax=FALSE, maxdensity=NULL,
   
   if(is.null(maxdensity))
   {
-    dd$y <-dd$y#/max(dd$y)
+    dd$y <- 0.9*dd$y#/max(dd$y)
   }else{
-    dd$y <-dd$y/maxdensity#/ifelse( (max(dd$y)/maxdensity)<minden, maxdensity*minden, maxdensity)
+    dd$y <- 0.9*dd$y/maxdensity#/ifelse( (max(dd$y)/maxdensity)<minden, maxdensity*minden, maxdensity)
   }
   
   polygon(x=c(min(distri),
@@ -88,20 +88,20 @@ distripolygonHill <- function(distri, color, ysh=0, yax=FALSE, maxdensity=NULL,
     rfac <- ceiling(-log(max(ddval), base=10))
     labaxis <- round(seq(from=0, to = 1.1*max(ddval), by = 10^(-rfac)), digits = rfac)
     if(length(labaxis)<3){labaxis <- round(seq(from=0, to = 1.1*max(ddval), by = 5*10^(-rfac-1)), digits = rfac+1)}
-    #labaxis <- labaxis[ labaxis<=ifelse(is.null(maxdensity), 1.1*max(ddval),maxdensity)]
-    #if(length(labaxis)>6){labaxis <- labaxis[round(seq(from=1, to =length(labaxis), length.out = 6))]}
+    labaxis <- labaxis[ labaxis<=ifelse(is.null(maxdensity), 1.1*max(ddval),maxdensity)]
+    if(length(labaxis)>6){labaxis <- labaxis[round(seq(from=1, to =length(labaxis), length.out = 6))]}
     
     labaxistrans <- labaxis
-    # 
-    # if(is.null(maxdensity))
-    # {
-    #   labaxistrans <- labaxistrans#/max(labaxistrans)
-    # }else{
-    #   labaxistrans <- labaxistrans/maxdensity#ifelse( (max(labaxistrans)/maxdensity)<minden, maxdensity*minden, maxdensity)
-    # }
+
+    if(is.null(maxdensity))
+    {
+      labaxistrans <- 0.9*labaxistrans#/max(labaxistrans)
+    }else{
+      labaxistrans <- 0.9*labaxistrans/maxdensity#ifelse( (max(labaxistrans)/maxdensity)<minden, maxdensity*minden, maxdensity)
+    }
     
     axis(side = 2, at = ysh + labaxistrans,line = 0,
-         labels = labaxistrans, cex.axis=0.7, tck=-0.02)
+         labels = labaxis, cex.axis=0.7, tck=-0.02)
   }
 }#end function()
 
@@ -226,10 +226,9 @@ plotdensities <- function(distributions,
   
   legendspace <- ifelse(is.null(dlegend), 0, length(dlegend))/legendncol #- 2*max(0.35,violine)
   plot(0, xlim=xlim, type='n',
-       ylim=c(min(ran)-0.75*violine + yshift[1], max(ran) + 0.9  + legendspace + yshift[2]),#+ 1/(2-violine)),
+       ylim=c(min(ran)-0.75*violine + yshift[1], max(ran) + 0.9 + legendspace + yshift[2]),#+ 1/(2-violine)),
        yaxt="n",
        ...)
-  #abline(v=0,)
   axis(side = 1, at = round(seq(Xglobalmin, Xglobalmax)), labels = NA, tck = -0.02)
   lines(x = c(0,0), y=c(-nbdistr, nbdistr+0.1))
   
@@ -252,11 +251,12 @@ plotdensities <- function(distributions,
   for (i in 1:length(distributions))
   {
     yaxd <- which.max(unlist(lapply(distributions[[i]], function(x) max(density(x)$y))))
+    rowmax <- ifelse(is.null(Yglobalmax), Ymax[[i]], Yglobalmax)
     for(j in 1:length(distributions[[i]]))
     {
       distrifunction(distri = distributions[[i]][[j]], color = transpColors[[i]][[j]], 
                      ysh = ran[i], yax= yax & (j==yaxd), minden=minden,
-                     maxdensity = Yglobalmax, transform=transform, adjust=adjust)
+                     maxdensity = rowmax, transform=transform, adjust=adjust)
     }
     abline(h=ran[i], col="gray")
   }
@@ -283,11 +283,11 @@ plotdensities <- function(distributions,
     {
       if(!is.null(sublegend[[i]]))
         if(sublegside[i]=="right")
-        {legend(x=Xglobalmax, y=ran[i]+ifelse(globalmaxdensity, 0.9, max(dmodes)),legend = unlist(sublegend[[i]]),
+        {legend(x=Xglobalmax, y=ran[i]+ifelse(globalmaxdensity, 0.9, max(unlist(Ymax))),legend = unlist(sublegend[[i]]),
                 fill = unlist(transpColors[[i]]), cex = cexsubl, xjust = 1, yjust = 1,
                 title = names(sublegend)[i], border = ifelse(blikefill,unlist(transpColors[[i]]), "black"), bty = btylegend)
         }else{
-          legend(x=Xglobalmin, y=ran[i]+ifelse(globalmaxdensity, 0.9, max(dmodes)),legend = unlist(sublegend[[i]]),
+          legend(x=Xglobalmin, y=ran[i]+ifelse(globalmaxdensity, 0.9, max(unlist(Ymax))),legend = unlist(sublegend[[i]]),
                  fill = unlist(transpColors[[i]]), cex = cexsubl, xjust = 0, yjust = 1,
                  title = names(sublegend)[i], border = ifelse(blikefill,unlist(transpColors[[i]]), "black"), bty = btylegend)
         }
