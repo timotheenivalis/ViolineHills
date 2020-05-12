@@ -10,6 +10,7 @@
 #' @param yax Do we plot a y-axis?
 #' @param minden Minimum mode of a density relative to the maximal density of all distributions
 #' @param adjust Smoothing factor in the function density()
+#' @param border The color to draw the border. The default, NULL, means to use par("fg"). Use border = NA to omit borders.
 #' 
 #' @return None
 #'
@@ -20,7 +21,8 @@
 #'
 #' @export
 distripolygonVioline <- function(distri, color, ysh=0, yax=FALSE, minden=0.6,
-                                 maxdensity=NULL, transform=identity, adjust=1)
+                                 maxdensity=NULL, transform=identity, adjust=1,
+                                 border=NULL)
 {
   dd <- density(distri, from=min(distri), to=max(distri), adjust=adjust)
   dd$y <- transform(dd$y)
@@ -38,7 +40,8 @@ distripolygonVioline <- function(distri, color, ysh=0, yax=FALSE, minden=0.6,
               min(distri)),
           y=c(0,dd$y,rev(-dd$y),0)+ysh,
           fillOddEven = TRUE,
-          col=color)
+          col=color, 
+          border = border)
 }#end function()
 
 #' One-side polygon from a distribution
@@ -53,6 +56,7 @@ distripolygonVioline <- function(distri, color, ysh=0, yax=FALSE, minden=0.6,
 #' @param yax Do we plot a y-axis?
 #' @param minden Minimum mode of a density relative to the maximal density of all distributions
 #' @param adjust Smoothing factor in the function density()
+#' @param border The color to draw the border. The default, NULL, means to use par("fg"). Use border = NA to omit borders.
 #'
 #' @return None
 #'
@@ -63,7 +67,8 @@ distripolygonVioline <- function(distri, color, ysh=0, yax=FALSE, minden=0.6,
 #'
 #' @export
 distripolygonHill <- function(distri, color, ysh=0, yax=FALSE, maxdensity=NULL, 
-                              transform=identity, minden=0.6, adjust = 1)
+                              transform=identity, minden=0.6, adjust = 1,
+                              border = NULL)
 {
   dd <- density(distri, from=min(distri), to=max(distri), cut=3, adjust = adjust)
   dd$y <- transform(dd$y)
@@ -82,7 +87,8 @@ distripolygonHill <- function(distri, color, ysh=0, yax=FALSE, maxdensity=NULL,
               min(distri)),
           y=unlist(c(0,dd$y,0,0))+ysh,
           fillOddEven = TRUE,
-          col=color)
+          col=color,
+          border = border)
   if(yax)
   {
     rfac <- ceiling(-log(max(ddval), base=10))
@@ -154,6 +160,7 @@ PolyViolineSwitch <- function(violine=TRUE)
 #' @param rowtextshift Vector of size 2 giving the x and y shift to be applied to the position of text in rows
 #' @param returnxpos Boolean. If TRUE the function returns the y-coordonates of each row for use in other graphic functions (such as mtext())
 #' @param yax Boolean. If TRUE labels appear on the y-axis.
+#' @param border The color to draw the border. The default, NULL, means to use par("fg"). Use border = NA to omit borders.
 #' @param ... Other parameters to be passed to plot()
 #'
 #' @return None
@@ -174,7 +181,7 @@ plotdensities <- function(distributions,
                           legendncol=1, transform=identity, adjust=1,
                           xshift=c(0,0), yshift=c(0,0), minden=0.6,
                           col="rainbow", rowtext=NULL, xlim=NULL, rowtextshift=c(0,0),
-                          returnxpos = FALSE, yax=TRUE,...)
+                          returnxpos = FALSE, yax=TRUE, border = NULL, ...)
 {
   if(typeof(distributions)!="list")
   {
@@ -256,7 +263,8 @@ plotdensities <- function(distributions,
     {
       distrifunction(distri = distributions[[i]][[j]], color = transpColors[[i]][[j]], 
                      ysh = ran[i], yax= yax & (j==yaxd), minden=minden,
-                     maxdensity = rowmax, transform=transform, adjust=adjust)
+                     maxdensity = rowmax, transform=transform, adjust=adjust,
+                     border=border)
     }
     abline(h=ran[i], col="gray")
   }

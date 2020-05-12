@@ -12,7 +12,8 @@ distripolygonVioline(
   minden = 0.6,
   maxdensity = NULL,
   transform = identity,
-  adjust = 1
+  adjust = 1,
+  border = NULL
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ distripolygonVioline(
 \item{transform}{Function}
 
 \item{adjust}{Smoothing factor in the function density()}
+
+\item{border}{The color to draw the border. The default, NULL, means to use par("fg"). Use border = NA to omit borders.}
 }
 \value{
 None

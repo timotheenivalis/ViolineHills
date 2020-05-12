@@ -27,6 +27,7 @@ plotdensities(
   rowtextshift = c(0, 0),
   returnxpos = FALSE,
   yax = TRUE,
+  border = NULL,
   ...
 )
 }
@@ -74,6 +75,8 @@ plotdensities(
 \item{returnxpos}{Boolean. If TRUE the function returns the y-coordonates of each row for use in other graphic functions (such as mtext())}
 
 \item{yax}{Boolean. If TRUE labels appear on the y-axis.}
+
+\item{border}{The color to draw the border. The default, NULL, means to use par("fg"). Use border = NA to omit borders.}
 
 \item{...}{Other parameters to be passed to plot()}
 }

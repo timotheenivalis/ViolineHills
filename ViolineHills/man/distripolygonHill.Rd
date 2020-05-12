@@ -12,7 +12,8 @@ distripolygonHill(
   maxdensity = NULL,
   transform = identity,
   minden = 0.6,
-  adjust = 1
+  adjust = 1,
+  border = NULL
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ distripolygonHill(
 \item{minden}{Minimum mode of a density relative to the maximal density of all distributions}
 
 \item{adjust}{Smoothing factor in the function density()}
+
+\item{border}{The color to draw the border. The default, NULL, means to use par("fg"). Use border = NA to omit borders.}
 }
 \value{
 None

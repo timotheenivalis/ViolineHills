@@ -1,5 +1,3 @@
-#setwd(dir = "~/Documents/GitHub/MyPackages/ViolineHills/")
-
 library(devtools)
 library(roxygen2)
 # initial package creation
