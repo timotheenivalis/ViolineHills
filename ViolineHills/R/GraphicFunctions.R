@@ -269,10 +269,14 @@ plotdensities <- function(distributions,
     rowmax <- ifelse(is.null(Yglobalmax), Ymax[[i]], Yglobalmax)
     for(j in 1:length(distributions[[i]]))
     {
+      if(length(border)<length(distributions[[i]]) ){
+        borderv <- rep(border[1], times=length(distributions[[i]]) )
+        }else{borderv <- border}
+      
       distrifunction(distri = distributions[[i]][[j]], color = transpColors[[i]][[j]], 
                      ysh = ran[i], yax= yax & (j==yaxd), minden=minden,
                      maxdensity = rowmax, transform=transform, adjust=adjust,
-                     border=border)
+                     border=borderv[j])
     }
     abline(h=ran[i], col="gray")
   }
