@@ -20,7 +20,7 @@ plotdensities(
   adjust = 1,
   xshift = c(0, 0),
   yshift = c(0, 0),
-  minden = 0.6,
+  minden = 0.2,
   col = "rainbow",
   rowtext = NULL,
   xlim = NULL,

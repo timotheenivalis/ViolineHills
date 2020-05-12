@@ -67,7 +67,7 @@ distripolygonVioline <- function(distri, color, ysh=0, yax=FALSE, minden=0.6,
 #'
 #' @export
 distripolygonHill <- function(distri, color, ysh=0, yax=FALSE, maxdensity=NULL, 
-                              transform=identity, minden=0.6, adjust = 1,
+                              transform=identity, minden=0.1, adjust = 1,
                               border = NULL)
 {
   dd <- density(distri, from=min(distri), to=max(distri), cut=3, adjust = adjust)
@@ -79,6 +79,10 @@ distripolygonHill <- function(distri, color, ysh=0, yax=FALSE, maxdensity=NULL,
     dd$y <- 0.9*dd$y#/max(dd$y)
   }else{
     dd$y <- 0.9*dd$y/maxdensity#/ifelse( (max(dd$y)/maxdensity)<minden, maxdensity*minden, maxdensity)
+  }
+  ratiomax <- max(dd$y)
+  if(ratiomax < minden) {
+    dd$y <- 0.9*dd$y * (minden/ratiomax)
   }
   
   polygon(x=c(min(distri),
@@ -177,9 +181,10 @@ PolyViolineSwitch <- function(violine=TRUE)
 #' @export
 plotdensities <- function(distributions, 
                           violine=FALSE, rowleg = NULL, dlegend = NULL, globalmaxdensity=TRUE,
-                          sublegend = NULL, cexsubl=1, sublegside = "left", btylegend ="o", blikefill=FALSE,
+                          sublegend = NULL, cexsubl=1, sublegside = "left", btylegend ="o",
+                          blikefill=FALSE,
                           legendncol=1, transform=identity, adjust=1,
-                          xshift=c(0,0), yshift=c(0,0), minden=0.6,
+                          xshift=c(0,0), yshift=c(0,0), minden=0.2,
                           col="rainbow", rowtext=NULL, xlim=NULL, rowtextshift=c(0,0),
                           returnxpos = FALSE, yax=TRUE, border = NULL, ...)
 {
@@ -213,6 +218,9 @@ plotdensities <- function(distributions,
       max(transform(density(x)$y), na.rm = TRUE)
     })))
   })
+  
+   #experiment with local maximum
+  
   
   if(globalmaxdensity)
   {

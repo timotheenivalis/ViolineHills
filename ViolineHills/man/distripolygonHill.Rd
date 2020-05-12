@@ -11,7 +11,7 @@ distripolygonHill(
   yax = FALSE,
   maxdensity = NULL,
   transform = identity,
-  minden = 0.6,
+  minden = 0.1,
   adjust = 1,
   border = NULL
 )
